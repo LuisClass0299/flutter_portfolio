@@ -55,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
       body: const TabBarView(
           children: [
-            Center(child: Text('Home'),)   
+            Center(child: Text('Home'),),
+            Center(child: Text('Experience'),),
+            Center(child: Text('Projects'),),
+            Center(child: Text('About'),)
           ],
         ),
       ),
