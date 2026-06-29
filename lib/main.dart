@@ -33,50 +33,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.grey,
-          title: Text('Luis Classe'),
-          bottom: const TabBar(
-            indicatorColor: Colors.white,
-            tabs: [
-              Tab(  
-                child: Row(
-                  children: [
-                    Text('Home'),
-                  ],
+         appBar: AppBar(
+            backgroundColor: Colors.grey,
+            title: Row(
+              children: [
+                const Text('Luis Classe'),
+                Expanded(
+                  child: const TabBar(
+                    tabs: [
+                      Tab(text: 'Home'),
+                      Tab(text: 'Experience'),
+                      Tab(text: 'Projects'),
+                      Tab(text: 'About'),
+                    ],
+                  ),
                 ),
-              ),
-              Tab(  
-                child: Row(
-                  children: [
-                    Text('Experience'),
-                  ],
-                ),
-              ),
-              Tab(  
-                child: Row(
-                  children: [
-                    Text('Projects'),
-                  ],
-                ),
-              ),
-              Tab(  
-                child: Row(
-                  children: [
-                    Text('About'),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        body: const TabBarView(
+      body: const TabBarView(
           children: [
             Center(child: Text('Home'),)   
           ],
-        )
+        ),
       ),
     );
   }
