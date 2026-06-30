@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+//google fonts for geist use
+import 'package:google_fonts/google_fonts.dart';
+const accent = Color(0xFFF5B800);
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Portfolio Website',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.blue),
+        textTheme: GoogleFonts.geistTextTheme(),
       ),
       home: const MyHomePage(title: 'Flutter Portfolio Home Page!'),
     );
@@ -36,12 +40,30 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 4,
       child: Scaffold(
          appBar: AppBar(
-            backgroundColor: Colors.grey,
+            backgroundColor: Colors.black,
             title: Row(
               children: [
-                const Text('Luis Classe'),
+                const Text(
+                  'Luis Classe',
+                  style: TextStyle(
+                    color: Colors.white,
+                    letterSpacing: 1.5,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Expanded(
-                  child: const TabBar(
+                  child: TabBar(
+                    labelColor: accent,
+                    dividerColor: Colors.transparent,
+                    indicatorColor: accent,
+                    unselectedLabelColor: Colors.white,
+                    indicator: BoxDecoration(),
+                    labelStyle: TextStyle(
+                      letterSpacing: 1.5,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                     tabs: [
                       Tab(text: 'Home'),
                       Tab(text: 'Experience'),
@@ -53,10 +75,21 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-      body: const TabBarView(
+      body: TabBarView(
           children: [
-            Center(child: Text('Home'),),
-            Center(child: Text('Experience'),),
+            Center(
+              child: Text('Home'),
+              
+            ),
+            Center(
+              child: Text(
+                'Experience',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Center(child: Text('Projects'),),
             Center(child: Text('About'),)
           ],
