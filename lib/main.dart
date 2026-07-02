@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 //google fonts for geist use
 import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const accent = Color(0xFFF5B800);
+const bgDark = Color(0xFF0d0d0d);
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'Portfolio Website',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.blue),
-        textTheme: GoogleFonts.geistTextTheme(),
+        textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Segoe UI'),
+        scaffoldBackgroundColor: bgDark,
       ),
       home: const MyHomePage(title: 'Flutter Portfolio Home Page!'),
     );
@@ -40,29 +43,30 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 4,
       child: Scaffold(
          appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: bgDark,
             title: Row(
               children: [
+                const SizedBox(width: 50,),
+                Image.asset('assets/favicon.png', width: 30),
+                const SizedBox(width: 50),
                 const Text(
                   'Luis Classe',
                   style: TextStyle(
                     color: Colors.white,
-                    letterSpacing: 1.5,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
                 Expanded(
                   child: TabBar(
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.center,
                     labelColor: accent,
                     dividerColor: Colors.transparent,
                     indicatorColor: accent,
                     unselectedLabelColor: Colors.white,
                     indicator: BoxDecoration(),
                     labelStyle: TextStyle(
-                      letterSpacing: 1.5,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                     tabs: [
                       Tab(text: 'Home'),
@@ -74,13 +78,95 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            actions: [
+              IconButton(
+                onPressed: () {}, 
+                icon: FaIcon(
+                  FontAwesomeIcons.github, 
+                  color: accent,
+                  )
+              ),
+              IconButton(
+                onPressed: () {}, 
+                icon: FaIcon(
+                  FontAwesomeIcons.linkedin,
+                  color: accent,
+                )
+              ),
+              IconButton(
+                onPressed: () {}, 
+                icon: FaIcon(
+                  FontAwesomeIcons.addressCard,
+                  color: accent,
+                )
+              ),
+              SizedBox(width: 12),
+            ],
           ),
-      body: TabBarView(
-          children: [
-            Center(
-              child: Text('Home'),
-              
+      body: 
+        TabBarView(
+          children: [  
+            Center(    
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 100,
+                children: [
+                  SizedBox(
+                    width: 490,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            text: 'Hello, I\'m ',
+                            style: TextStyle(
+                              fontWeight: FontWeight(700),
+                              fontSize: 56,
+                            ),
+                            children: [
+                                TextSpan(
+                                  text: 'Luis',
+                                  style: TextStyle(
+                                    color: accent,
+                                  )
+                                )
+                            ]
+                          ),
+                        ), 
+                        Text(
+                          'I\'m a computer science student interested in Web development and software engineering.',
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {}, 
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: accent,
+                            side: BorderSide(color: accent, width: 2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)
+                            )
+                          ),
+                          child: Text('See My Previous Experience')
+                        ),
+                      ],
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/profile.jpeg',
+                    height: 420,
+                    width: 320,
+
+                    fit: BoxFit.cover,
+                    ),
+                ],
+              ),   
             ),
+            
+            
+            
             Center(
               child: Text(
                 'Experience',
