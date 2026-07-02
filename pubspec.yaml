@@ -15,6 +15,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   google_fonts: ^8.1.0
+  font_awesome_flutter: ^11.0.0
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +38,12 @@ flutter:
 
   assets:
     - assets/profile.jpeg
+    - assets/about.jpeg
+    - assets/bpa.png
+    - assets/favicon.png
+    - assets/hero.png
+    - assets/ieee.png
+    - assets/limbitless.png
+    - assets/profile.jpeg
+    - assets/resume.pdf
+    - assets/scarab_logo.png
