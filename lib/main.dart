@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //google fonts for geist use
 import 'package:google_fonts/google_fonts.dart';
 const accent = Color(0xFFF5B800);
+const bgDark = Color(0xFF0d0d0d);
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Portfolio Website',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.blue),
-        textTheme: GoogleFonts.geistTextTheme(),
+        textTheme: GoogleFonts.geistTextTheme(ThemeData.dark().textTheme),  
+        scaffoldBackgroundColor: bgDark,
       ),
       home: const MyHomePage(title: 'Flutter Portfolio Home Page!'),
     );
@@ -75,12 +77,60 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-      body: TabBarView(
-          children: [
-            Center(
-              child: Text('Home'),
-              
+      body: 
+        TabBarView(
+          children: [  
+            Center(    
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 100,
+                children: [
+                  SizedBox(
+                    width: 490,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            text: 'Hello, I\'m ',
+                            style: TextStyle(
+                              fontWeight: FontWeight(700),
+                              fontSize: 56,
+                            ),
+                            children: [
+                                TextSpan(
+                                  text: 'Luis',
+                                  style: TextStyle(
+                                    color: accent,
+                                  )
+                                )
+                            ]
+                          ),
+                        ), 
+                        Text(
+                          'I\'m a computer science student interested in Web development and software engineering.',
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {}, 
+                          child: Text('Example')
+                        )
+                      ],
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/profile.jpeg',
+                    width: 300,
+                    fit: BoxFit.fill,
+                    ),
+                ],
+              ),   
             ),
+            
+            
+            
             Center(
               child: Text(
                 'Experience',
