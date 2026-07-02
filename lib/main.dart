@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
       length: 4,
       child: Scaffold(
          appBar: AppBar(
+            toolbarHeight: 64,
             backgroundColor: bgDark,
             title: Row(
               children: [
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: TabBar(
                     isScrollable: true,
+                    
                     tabAlignment: TabAlignment.center,
                     labelColor: accent,
                     dividerColor: Colors.transparent,
@@ -81,31 +83,58 @@ class _MyHomePageState extends State<MyHomePage> {
             actions: [
               IconButton(
                 onPressed: () {}, 
+                style: IconButton.styleFrom(
+                  foregroundColor: accent,
+                  side: const BorderSide(color: accent, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 icon: FaIcon(
                   FontAwesomeIcons.github, 
                   color: accent,
-                  )
+                  ),
               ),
+              const SizedBox(width:14),
               IconButton(
                 onPressed: () {}, 
+                style: IconButton.styleFrom(
+                  foregroundColor: accent,
+                  side: const BorderSide(color: accent, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 icon: FaIcon(
                   FontAwesomeIcons.linkedin,
                   color: accent,
-                )
+                ),
               ),
+              const SizedBox(width: 14),
               IconButton(
                 onPressed: () {}, 
+                style: IconButton.styleFrom(
+                  foregroundColor: accent,
+                  side: const BorderSide(color: accent, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 icon: FaIcon(
                   FontAwesomeIcons.addressCard,
                   color: accent,
-                )
+                ),
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 16),
             ],
+            shape: const Border(
+              bottom: BorderSide(color: Colors.white12, width: .5),
+            ),
           ),
       body: 
         TabBarView(
           children: [  
+            //Home Page
             Center(    
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -121,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           TextSpan(
                             text: 'Hello, I\'m ',
                             style: TextStyle(
-                              fontWeight: FontWeight(700),
+                              fontWeight: FontWeight.bold,
                               fontSize: 56,
                             ),
                             children: [
@@ -134,22 +163,33 @@ class _MyHomePageState extends State<MyHomePage> {
                             ]
                           ),
                         ), 
+                        const SizedBox(height: 16),
                         Text(
                           'I\'m a computer science student interested in Web development and software engineering.',
                           style: TextStyle(
                             fontSize: 17,
+                            height: 1.6,
+                            color: Colors.white60,
                           ),
                         ),
+                        const SizedBox(height: 16),
                         OutlinedButton(
                           onPressed: () {}, 
+                          
                           style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal:24, vertical: 15),
                             foregroundColor: accent,
                             side: BorderSide(color: accent, width: 2),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)
                             )
                           ),
-                          child: Text('See My Previous Experience')
+                          child: Text(
+                            'See My Previous Experience',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         ),
                       ],
                     ),
@@ -158,7 +198,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     'assets/profile.jpeg',
                     height: 420,
                     width: 320,
-
                     fit: BoxFit.cover,
                     ),
                 ],
