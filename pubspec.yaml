@@ -13,8 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  url_launcher: ^6.3.1
   cupertino_icons: ^1.0.8
-  google_fonts: ^8.1.0
   font_awesome_flutter: ^11.0.0
 
 dev_dependencies:
@@ -45,5 +45,4 @@ flutter:
     - assets/ieee.png
     - assets/limbitless.png
     - assets/profile.jpeg
-    - assets/resume.pdf
     - assets/scarab_logo.png

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-//google fonts for geist use
-import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const accent = Color(0xFFF5B800);
 const bgDark = Color(0xFF0d0d0d);
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Portfolio Website',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Segoe UI'),
         scaffoldBackgroundColor: bgDark,
       ),
@@ -36,7 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -82,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             actions: [
               IconButton(
-                onPressed: () {}, 
+                onPressed: () => launchUrl(Uri.parse('https://github.com/LuisClass0299')), 
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
@@ -97,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(width:14),
               IconButton(
-                onPressed: () {}, 
+                onPressed: () => launchUrl(Uri.parse('https://www.linkedin.com/in/luis-classe/')), 
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
@@ -112,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(width: 14),
               IconButton(
-                onPressed: () {}, 
+                onPressed: () => launchUrl(Uri.base.resolve('resume.pdf')), 
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
@@ -194,12 +192,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/profile.jpeg',
-                    height: 420,
-                    width: 320,
-                    fit: BoxFit.cover,
+                  HeroImage(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/profile.jpeg',
+                        height: 420,
+                        width: 320,
+                        fit: BoxFit.cover,
+                        ),
                     ),
+                  )
                 ],
               ),   
             ),
@@ -220,6 +223,50 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class HeroImage extends StatefulWidget{
+  const HeroImage({super.key, required this.child});
+  final Widget child;
+
+  @override
+  State<HeroImage> createState() => _HeroImageState();
+}
+
+class _HeroImageState extends State<HeroImage> with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState(){
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+  }
+
+  @override
+  void dispose()
+  {
+    _controller.dispose();
+     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return AnimatedBuilder(
+      animation: _animation,   
+      builder: (context, child){
+        return Transform.translate(
+          offset: Offset(0, _animation.value * -20),
+          child: child,
+        );
+      },
+      child: widget.child,
     );
   }
 }
