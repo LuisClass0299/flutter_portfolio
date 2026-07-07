@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-const accent = Color(0xFFF5B800);
-const bgDark = Color(0xFF0d0d0d);
+import 'pages/home_page.dart';
+import 'pages/experience_page.dart';
+import 'pages/about_page.dart';
+import 'pages/project_page.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -133,140 +136,13 @@ class _MyHomePageState extends State<MyHomePage> {
         TabBarView(
           children: [  
             //Home Page
-            Center(    
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                spacing: 100,
-                children: [
-                  SizedBox(
-                    width: 490,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            text: 'Hello, I\'m ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 56,
-                            ),
-                            children: [
-                                TextSpan(
-                                  text: 'Luis',
-                                  style: TextStyle(
-                                    color: accent,
-                                  )
-                                )
-                            ]
-                          ),
-                        ), 
-                        const SizedBox(height: 16),
-                        Text(
-                          'I\'m a computer science student interested in Web development and software engineering.',
-                          style: TextStyle(
-                            fontSize: 17,
-                            height: 1.6,
-                            color: Colors.white60,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        OutlinedButton(
-                          onPressed: () {}, 
-                          
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal:24, vertical: 15),
-                            foregroundColor: accent,
-                            side: BorderSide(color: accent, width: 2),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
-                            )
-                          ),
-                          child: Text(
-                            'See My Previous Experience',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ),
-                      ],
-                    ),
-                  ),
-                  HeroImage(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/profile.jpeg',
-                        height: 420,
-                        width: 320,
-                        fit: BoxFit.cover,
-                        ),
-                    ),
-                  )
-                ],
-              ),   
-            ),
-            
-            
-            
-            Center(
-              child: Text(
-                'Experience',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            const HomeContent(),
+            const ExperienceContent(),
             Center(child: Text('Projects'),),
             Center(child: Text('About'),)
           ],
         ),
       ),
-    );
-  }
-}
-
-class HeroImage extends StatefulWidget{
-  const HeroImage({super.key, required this.child});
-  final Widget child;
-
-  @override
-  State<HeroImage> createState() => _HeroImageState();
-}
-
-class _HeroImageState extends State<HeroImage> with SingleTickerProviderStateMixin{
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState(){
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-  }
-
-  @override
-  void dispose()
-  {
-    _controller.dispose();
-     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context){
-    return AnimatedBuilder(
-      animation: _animation,   
-      builder: (context, child){
-        return Transform.translate(
-          offset: Offset(0, _animation.value * -20),
-          child: child,
-        );
-      },
-      child: widget.child,
     );
   }
 }
