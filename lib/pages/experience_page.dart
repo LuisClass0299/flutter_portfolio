@@ -13,6 +13,7 @@ class ExperienceContent extends StatelessWidget{
       SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 50,
           children: [
             Text.rich(
@@ -20,7 +21,7 @@ class ExperienceContent extends StatelessWidget{
                 text: 'My ',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 56,
+                  fontSize: 32,
                 ),
                 children: [
                   TextSpan(
@@ -106,6 +107,7 @@ class ExperienceEntry extends StatelessWidget{
                 Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
+                    color: Colors.white,
                     border: Border.all(
                       color: accent,
                     ),
@@ -123,8 +125,7 @@ class ExperienceEntry extends StatelessWidget{
               ],
             ),
           ),
-          SizedBox(
-            width: 600,
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -158,4 +159,5 @@ class ExperienceEntry extends StatelessWidget{
     );
   }
 }
+
 
