@@ -1,60 +1,146 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/theme.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class ExperienceContent extends StatelessWidget{
   const ExperienceContent({super.key});
 
   @override
   Widget build(BuildContext context){
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      margin: EdgeInsets.symmetric(vertical: 96, horizontal: 64),
-      child: 
-      SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          spacing: 50,
-          children: [
-            Text.rich(
-              TextSpan(
-                text: 'My ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 56,
-                ),
-                children: [
-                  TextSpan(
-                    text: 'Experience',
-                    style: TextStyle(
-                      color: accent,
-                    ),
-                  ),
-                ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 96, horizontal: 104),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 50,
+        children: [
+          Text.rich(
+            TextSpan(
+              text: 'My ',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 32,
               ),
-            ), 
-            const ExperienceEntry(
-              employmentPeriod: 'May 2026 - Present', 
-              logoPath: 'assets/limbitless.png', 
-              job: 'Web Development Intern', 
-              organization: 'Limbitless', 
-              description: 'Working with HTML, CSS, and JavaScript to maintain all domains and subdomains of Limbitless solutions aiding in the company mission of increasing accessibility to prosthetics',
+              children: [
+                TextSpan(
+                  text: 'Experience',
+                  style: TextStyle(
+                    color: accent,
+                  ),
+                ),
+              ],
             ),
-            const ExperienceEntry(
-              employmentPeriod: 'Feb 2026 - Present', 
-              logoPath: 'assets/ieee.png', 
-              job: 'Software Committee Member', 
-              organization: 'IEEE @ UCF', 
-              description: 'Proposed strategic initiatives to drive club engagement, including a newsletter recommendation to expand member outreach. Contributed to cross-committee planning sessions by workshopping future development roadmaps and evaluating ongoing project directions.',
+          ), 
+          const ExperienceEntry(
+            employmentPeriod: 'May 2026 - Present', 
+            logoPath: 'assets/limbitless.png', 
+            job: 'Web Development Intern', 
+            organization: 'Limbitless', 
+            description: 'Working with HTML, CSS, and JavaScript to maintain all domains and subdomains of Limbitless solutions aiding in the company mission of increasing accessibility to prosthetics',
+          ),
+          const ExperienceEntry(
+            employmentPeriod: 'Feb 2026 - Present', 
+            logoPath: 'assets/ieee.png', 
+            job: 'Software Committee Member', 
+            organization: 'IEEE @ UCF', 
+            description: 'Proposed strategic initiatives to drive club engagement, including a newsletter recommendation to expand member outreach. Contributed to cross-committee planning sessions by workshopping future development roadmaps and evaluating ongoing project directions.',
+          ),
+          const ExperienceEntry(
+            employmentPeriod: 'June 2023 - May 2025', 
+            logoPath: 'assets/bpa.png', 
+            job: 'Network Admin Competitor', 
+            organization: 'Business Professionals of America', 
+            description: 'Collaborated with Cisco certified peers to develop an enterprise network solution Received state awards (2024/2025) and National Awards (2024), placing 2nd in the nation',
+          ),
+    
+                  
+          
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    text: 'My ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'Tech ',
+                        style: TextStyle(
+                          color: accent,
+                        ),
+                      ),
+                      TextSpan(text: 'Stack'),                  
+                    ],
+                  ),
+                ), 
+            
+                Text(
+                  'Languages'.toUpperCase(),
+                  style: TextStyle(
+                    color: Color(0xFFaaaaaa),
+                    fontSize: 14,
+                    fontWeight: FontWeight(700),
+                    letterSpacing: 1.1
+                  ),
+                ),
+                Row(
+                  spacing: 20,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TechTag(label: 'Python', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'),
+                    TechTag(label: 'C', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg'),
+                    TechTag(label: 'TypeScript', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg'),
+                    TechTag(label: 'JavaScript', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'),
+                    TechTag(label: 'HTML', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'),
+                    TechTag(label: 'CSS', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg'),
+                    TechTag(label: 'Dart', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg')
+                  ],
+                ),
+                Text(
+                  'Frameworks & Libraries'.toUpperCase(),
+                  style: TextStyle(
+                    color: Color(0xFFaaaaaa),
+                    fontSize: 14,
+                    fontWeight: FontWeight(700),
+                    letterSpacing: 1.1
+                  ),
+                ),
+                Row(
+                  spacing: 20,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TechTag(label: 'React', devIcon:'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'),
+                    TechTag(label: 'Next.js', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-plain.svg', invertColor: true),
+                    TechTag(label: 'Flutter', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg'),
+                  ],
+                ),
+                Text(
+                  'Tools & Platforms'.toUpperCase(),
+                  style: TextStyle(
+                    color: Color(0xFFaaaaaa),
+                    fontSize: 14,
+                    fontWeight: FontWeight(700),
+                    letterSpacing: 1.1
+                  ),
+                ),
+                Row(
+                  spacing: 20,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TechTag(label: 'Git', devIcon:'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'),
+                    TechTag(label: 'GitHub', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg', invertColor: true),
+                    TechTag(label: 'Docker', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg'),
+                  ],
+                ),
+              ],
             ),
-            const ExperienceEntry(
-              employmentPeriod: 'June 2023 - May 2025', 
-              logoPath: 'assets/bpa.png', 
-              job: 'Network Admin Competitor', 
-              organization: 'Business Professionals of America', 
-              description: 'Collaborated with Cisco certified peers to develop an enterprise network solution Received state awards (2024/2025) and National Awards (2024), placing 2nd in the nation',
-            ),
-          ], 
-        ),
+          ),
+        ], 
       ),
     ); 
   }
@@ -106,6 +192,7 @@ class ExperienceEntry extends StatelessWidget{
                 Container(
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
+                    color: Colors.white,
                     border: Border.all(
                       color: accent,
                     ),
@@ -123,8 +210,7 @@ class ExperienceEntry extends StatelessWidget{
               ],
             ),
           ),
-          SizedBox(
-            width: 600,
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -154,6 +240,47 @@ class ExperienceEntry extends StatelessWidget{
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TechTag extends StatefulWidget{
+  const TechTag({
+    super.key, 
+    required this.label,
+    required this.devIcon,
+    this.invertColor = false,
+    });
+  final String label;
+  final String devIcon;
+  final bool invertColor;
+  
+  @override
+  State<TechTag> createState() => _TechTagState();
+}
+
+class _TechTagState extends State<TechTag>{ 
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context){
+    return MouseRegion(
+      onEnter: (event) => setState(() => _isHovered = true),
+      onExit: (event)  => setState(() => _isHovered = false),
+      child: AnimatedSlide(
+        duration: Duration(milliseconds: 150),
+        offset: _isHovered ? Offset(0, -0.20) : Offset(0, 0),
+        child: Tooltip(
+          message: widget.label,
+          preferBelow: false,
+          child: SvgPicture.network(
+            widget.devIcon, 
+            width: 56, 
+            height: 56,
+            colorFilter: widget.invertColor ? ColorFilter.mode(Colors.white, BlendMode.srcIn) : null,
+            )
+        ),
       ),
     );
   }
