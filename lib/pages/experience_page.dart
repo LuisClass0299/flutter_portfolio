@@ -54,6 +54,27 @@ class ExperienceContent extends StatelessWidget{
               organization: 'Business Professionals of America', 
               description: 'Collaborated with Cisco certified peers to develop an enterprise network solution Received state awards (2024/2025) and National Awards (2024), placing 2nd in the nation',
             ),
+
+            Text.rich(
+                TextSpan(
+                  text: 'My ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Tech ',
+                      style: TextStyle(
+                        color: accent,
+                      ),
+                    ),
+                    TextSpan(text: 'Stack'),                  
+                  ],
+                ),
+              ),         
+            TechTag(label: 'Tester')
+
           ], 
         ),
       ),
@@ -160,4 +181,32 @@ class ExperienceEntry extends StatelessWidget{
   }
 }
 
+class TechTag extends StatefulWidget{
+  const TechTag({super.key, required this.label});
+  final String label;
+  
+  @override
+  State<TechTag> createState() => _TechTagState();
+}
+
+class _TechTagState extends State<TechTag>{ 
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context){
+    return MouseRegion(
+      onEnter: (event) => setState(() => _isHovered = true),
+      onExit: (event)  => setState(() => _isHovered = false),
+      child: Container(
+        child: 
+          Text(
+            widget.label,
+            style:  TextStyle(
+              color: _isHovered ? Colors.green : Colors.white
+            ),
+          ),       
+      ),
+    );
+  }
+}
 
