@@ -55,7 +55,7 @@ class HomeContent extends StatelessWidget{
                     side: BorderSide(color: accent, width: 2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)
-                    )
+                    ),
                   ),
                   child: Text(
                     'See My Previous Experience',

@@ -28,7 +28,7 @@ class ProjectContent extends StatelessWidget{
            ),
          ), 
 
-        ProjectEntry(image: Image.asset('assets/hero.png'), projectName: 'Portfolio site', description: 'A personal portfolio website built with HTML, CSS, and JavaScript to showcase my experience and projects', github: 'https://github.com/LuisClass0299/Personal-Website')
+        ProjectEntry(image: Image.asset('assets/hero.png'), projectName: 'Portfolio site', description: 'A personal portfolio website built with HTML, CSS, and JavaScript to showcase my experience and projects', skills: ['HTML', 'CSS', 'JavaScript'], github: 'https://github.com/LuisClass0299/Personal-Website')
        ],
     );
   }
@@ -41,8 +41,10 @@ class ProjectEntry extends StatelessWidget{
     required this.image,
     required this.projectName,
     required this.description,
+    required this.skills,
     required this.github
   });
+  final List<String> skills;
   final Widget image;
   final String projectName;
   final String description;
@@ -51,7 +53,9 @@ class ProjectEntry extends StatelessWidget{
    @override
   Widget build(BuildContext context) { 
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.all(24),
+      width: 330,
+      height: 480,
       decoration: BoxDecoration(
         color: Color(0xFF1a1a1a),
         border: Border.all(
@@ -60,12 +64,54 @@ class ProjectEntry extends StatelessWidget{
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
+        spacing: 16, 
+        crossAxisAlignment: CrossAxisAlignment.start,    
         children: [
-          SizedBox(height:160, child: image),
-          Text(projectName),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: SizedBox(height:160, child: image)
+          ),
+          Text(
+            projectName,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 19,
+
+            ),
+          ),
           Text(description),
-          OutlinedButton(
+          Row(
+            children: [
+              for(final skill in skills)
+                OutlinedButton(    
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  foregroundColor: accent,
+                  side: BorderSide(color: accent, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(skill)
+                ),
+              
+            ],
+          ),
+          OutlinedButton(    
             onPressed: () => launchUrl(Uri.parse(github)),
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+              foregroundColor: accent,
+              side: BorderSide(color: accent, width: 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
             child: Text('Github')
           ),
         ],
