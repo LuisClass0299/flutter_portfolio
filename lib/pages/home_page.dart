@@ -46,8 +46,9 @@ class HomeContent extends StatelessWidget{
                 ),
                 const SizedBox(height: 16),
                 OutlinedButton(
-                  onPressed: () {}, 
-                  
+                  onPressed: () {
+                    DefaultTabController.of(context).animateTo(1);
+                  },    
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal:24, vertical: 15),
                     foregroundColor: accent,
