@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const HomeContent(),
             const ExperienceContent(),
             const ProjectContent(),
-            Center(child: Text('About'),)
+            const AboutContent(),
           ],
         ),
       ),
