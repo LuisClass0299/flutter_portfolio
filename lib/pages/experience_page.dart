@@ -58,6 +58,7 @@ class ExperienceContent extends StatelessWidget{
           
           Center(
             child: Column(
+              spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text.rich(
@@ -88,9 +89,8 @@ class ExperienceContent extends StatelessWidget{
                     letterSpacing: 1.1
                   ),
                 ),
-                Row(
-                  spacing: 20,
-                  mainAxisSize: MainAxisSize.min,
+                Wrap(
+                  spacing: 20,            
                   children: [
                     TechTag(label: 'Python', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'),
                     TechTag(label: 'C', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg'),
@@ -110,9 +110,8 @@ class ExperienceContent extends StatelessWidget{
                     letterSpacing: 1.1
                   ),
                 ),
-                Row(
+                Wrap(
                   spacing: 20,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     TechTag(label: 'React', devIcon:'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'),
                     TechTag(label: 'Next.js', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-plain.svg', invertColor: true),
@@ -128,9 +127,8 @@ class ExperienceContent extends StatelessWidget{
                     letterSpacing: 1.1
                   ),
                 ),
-                Row(
+                Wrap(
                   spacing: 20,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     TechTag(label: 'Git', devIcon:'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'),
                     TechTag(label: 'GitHub', devIcon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg', invertColor: true),
@@ -163,6 +161,35 @@ class ExperienceEntry extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final mobile = MediaQuery.of(context).size.width < 750;  
+    final mobileSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          job,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight(600),
+          ),
+        ),
+        Text(
+          organization,
+          style: TextStyle(
+            fontSize: 15,
+            color: accent,
+          ),
+        ),
+        Text(
+          description,
+          style: TextStyle(
+            fontSize: 15,
+            color: Color(0xFFAAAAAA)
+          ),
+        ),
+      ],
+    );
+    
     return Container(
       padding: EdgeInsets.all(12),
       decoration:  BoxDecoration(
@@ -173,7 +200,8 @@ class ExperienceEntry extends StatelessWidget{
         ),
         borderRadius: BorderRadius.circular(8)
       ),
-      child: Row(
+      child: Flex(
+        direction: mobile ? Axis.vertical : Axis.horizontal,
         children: [
           SizedBox(
             width: 200,  
@@ -210,35 +238,9 @@ class ExperienceEntry extends StatelessWidget{
               ],
             ),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  job,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight(600),
-                  ),
-                ),
-                Text(
-                  organization,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: accent,
-                  ),
-                ),
-                Text(
-                  description,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Color(0xFFAAAAAA)
-                  ),
-                ),
-              ],
-            ),
-          ),
+          //checks if mobile view used before generating second half of entries, if not expanded used since width limited
+          //if mobile is used column used since height infinite
+          mobile ? mobileSection : Expanded(child: mobileSection),
         ],
       ),
     );

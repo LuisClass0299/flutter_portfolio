@@ -4,13 +4,15 @@ import 'package:portfolio_website/theme.dart';
 
 class AboutContent extends StatelessWidget{
   const AboutContent({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final mobile = MediaQuery.of(context).size.width < 1000; 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 96, horizontal: 64),
-      child: Row(
+      child: Flex(
+        direction: mobile ? Axis.vertical : Axis.horizontal,
         spacing: 20,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ConstrainedBox(
