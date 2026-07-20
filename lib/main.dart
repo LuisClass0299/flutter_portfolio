@@ -40,10 +40,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final mobile = MediaQuery.of(context).size.width < 820; 
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-         appBar: AppBar(
+        appBar: AppBar(
+            iconTheme: const IconThemeData(
+              color: Colors.white,
+            ),
             toolbarHeight: 64,
             backgroundColor: bgDark,
             title: Row(
@@ -58,30 +63,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 16,
                   ),
                 ),
-                Expanded(
-                  child: TabBar(
-                    isScrollable: true,
-                    
-                    tabAlignment: TabAlignment.center,
-                    labelColor: accent,
-                    dividerColor: Colors.transparent,
-                    indicatorColor: accent,
-                    unselectedLabelColor: Colors.white,
-                    indicator: BoxDecoration(),
-                    labelStyle: TextStyle(
-                      fontSize: 16,
+                if(!mobile)
+                  Expanded(
+                    child: TabBar(
+                      isScrollable: true,
+                      
+                      tabAlignment: TabAlignment.center,
+                      labelColor: accent,
+                      dividerColor: Colors.transparent,
+                      indicatorColor: accent,
+                      unselectedLabelColor: Colors.white,
+                      indicator: BoxDecoration(),
+                      labelStyle: TextStyle(
+                        fontSize: 16,
+                      ),
+                      tabs: [
+                        Tab(text: 'Home'),
+                        Tab(text: 'Experience'),
+                        Tab(text: 'Projects'),
+                        Tab(text: 'About'),
+                      ],
                     ),
-                    tabs: [
-                      Tab(text: 'Home'),
-                      Tab(text: 'Experience'),
-                      Tab(text: 'Projects'),
-                      Tab(text: 'About'),
-                    ],
                   ),
-                ),
               ],
             ),
-            actions: [
+            actions: mobile ? null : [
               IconButton(
                 onPressed: () => launchUrl(Uri.parse('https://github.com/LuisClass0299')), 
                 style: IconButton.styleFrom(
@@ -132,6 +138,56 @@ class _MyHomePageState extends State<MyHomePage> {
               bottom: BorderSide(color: Colors.white12, width: .5),
             ),
           ),
+        endDrawer: mobile ? Drawer(
+          child: ListView(
+            children: [
+              Builder(
+                builder: (context) {
+                  return ListTile(
+                    title: Text('Home'),
+                    onTap: () {
+                      DefaultTabController.of(context).animateTo(0);
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              ),
+              Builder(
+                builder: (context) {
+                  return ListTile(
+                    title: Text('Experience'),
+                    onTap: () {
+                      DefaultTabController.of(context).animateTo(1);
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              ),
+              Builder(
+                builder: (context) {
+                  return ListTile(
+                    title: Text('Projects'),
+                    onTap: () {
+                      DefaultTabController.of(context).animateTo(2);
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              ),
+              Builder(
+                builder: (context) {
+                  return ListTile(
+                    title: Text('About'),
+                    onTap: () {
+                      DefaultTabController.of(context).animateTo(3);
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              ),
+            ],
+          ), 
+        ) : null,
       body: 
         TabBarView(
           children: [  
