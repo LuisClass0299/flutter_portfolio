@@ -202,6 +202,7 @@ class ExperienceEntry extends StatelessWidget{
       ),
       child: Flex(
         direction: mobile ? Axis.vertical : Axis.horizontal,
+        crossAxisAlignment: mobile ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
           SizedBox(
             width: 200,  

@@ -15,12 +15,15 @@ class HomeContent extends StatelessWidget{
       child: Flex(
         direction: mobile ? Axis.vertical : Axis.horizontal,
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        
+        
         spacing: 100,
         children: [
           SizedBox(
             width: 490,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: mobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text.rich(

@@ -46,7 +46,7 @@ class AboutContent extends StatelessWidget{
                     height:  1.8,
                     color: Color(0xFFaaaaaa),
                   ),
-                  ),
+                ),
               
                 Text(
                   'A little more about me'.toUpperCase(),
@@ -67,7 +67,7 @@ class AboutContent extends StatelessWidget{
           Container(
             padding: EdgeInsets.all(32),
             width: 330,
-            height: 380,
+            height: 400,
             decoration: BoxDecoration(
               color: Color(0xFF1a1a1a),
               border: Border.all(
@@ -138,11 +138,13 @@ class AboutContent extends StatelessWidget{
                      Divider(
                       color: Color.from(alpha: 0.30, red: 136, green: 136, blue: 136)
                     ),
+                    
+                    SizedBox(height: 20),
 
                     OutlinedButton(    
                       onPressed: () => launchUrl(Uri.base.resolve('resume.pdf')),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
                         foregroundColor: accent,
                         side: BorderSide(color: accent, width: 2),
                         shape: RoundedRectangleBorder(

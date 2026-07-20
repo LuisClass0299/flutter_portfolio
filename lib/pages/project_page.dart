@@ -107,33 +107,38 @@ class ProjectEntry extends StatelessWidget{
             runSpacing: 5,
             children: [
               for(final skill in skills)
-                OutlinedButton(    
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                  foregroundColor: accent,
-                  side: BorderSide(color: accent, width: 2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                IgnorePointer(
+                  ignoring: true,
+                  child: OutlinedButton(    
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      backgroundColor: Color.from(alpha: 0.05, red: 37, green: 37, blue: 37),
+                      foregroundColor: accent,
+                      side: BorderSide(color: accent, width: 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(skill)
                   ),
-                ),
-                child: Text(skill)
                 ),
               
             ],
           ),
-          OutlinedButton(    
-            onPressed: () => launchUrl(Uri.parse(github)),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-              foregroundColor: accent,
-              side: BorderSide(color: accent, width: 2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+          if(github.isNotEmpty)
+            OutlinedButton(    
+              onPressed: () => launchUrl(Uri.parse(github)),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                foregroundColor: accent,
+                side: BorderSide(color: accent, width: 2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
+              child: Text('Github')
             ),
-            child: Text('Github')
-          ),
         ],
       ),
     );
