@@ -4,18 +4,26 @@ import 'package:portfolio_website/widgets/hero_image.dart';
 
 class HomeContent extends StatelessWidget{
   const HomeContent({super.key});
+  
+
 
   @override
   Widget build(BuildContext context){
+    final mobile = MediaQuery.of(context).size.width < 950;  
+
     return Center(    
-      child: Row(
+      child: Flex(
+        direction: mobile ? Axis.vertical : Axis.horizontal,
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        
+        
         spacing: 100,
         children: [
           SizedBox(
             width: 490,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: mobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text.rich(

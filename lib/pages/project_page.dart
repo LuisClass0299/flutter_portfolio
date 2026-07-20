@@ -7,29 +7,47 @@ class ProjectContent extends StatelessWidget{
   
   @override
   Widget build(BuildContext context){
-    return Column(
-     crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-         Text.rich(
-           TextSpan(
-             text: 'My ',
-             style: TextStyle(
-               fontWeight: FontWeight.bold,
-               fontSize: 32,
-             ),
-             children: [
-               TextSpan(
-                 text: 'Projects',
-                 style: TextStyle(
-                   color: accent,
-                 ),
-               ),
-             ],
-           ),
-         ), 
+    final mobile = MediaQuery.of(context).size.width < 820; 
+    final cards = [
+      ProjectEntry(image: Image.asset('assets/hero.png'), projectName: 'Portfolio site', 
+      description: 'A personal portfolio website built with HTML, CSS, and JavaScript to showcase my experience and projects', 
+      skills: ['HTML', 'CSS', 'JavaScript'], github: 'https://github.com/LuisClass0299/Personal-Website'),
+      ProjectEntry(image: Image.asset('assets/ieee.png'), projectName: 'Dynamic Member Database',
+        description: 'A club member database built with a team, featuring a TypeScript and React frontend with a Node.js backend', 
+        skills: ['TypeScript', 'React', 'Node.js', 'Tailwind'], github: 'https://github.com/IEEE-UCF/Member-Resume-Database-MRD'),
+      ProjectEntry(image: Image.asset('assets/apply_page.png'), projectName: 'Application Page',
+        description: 'dynamic application page for Limbitless 2026 intern lifecycle, additionally added congratulations page for form completion', 
+        skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'], github: ''),
+    ];
 
-        ProjectEntry(image: Image.asset('assets/hero.png'), projectName: 'Portfolio site', description: 'A personal portfolio website built with HTML, CSS, and JavaScript to showcase my experience and projects', skills: ['HTML', 'CSS', 'JavaScript'], github: 'https://github.com/LuisClass0299/Personal-Website')
-       ],
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 96, horizontal: 64),
+        child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+             Text.rich(
+               TextSpan(
+                 text: 'My ',
+                 style: TextStyle(
+                   fontWeight: FontWeight.bold,
+                   fontSize: 32,
+                 ),
+                 children: [
+                   TextSpan(
+                     text: 'Projects',
+                     style: TextStyle(
+                       color: accent,
+                     ),
+                   ),
+                 ],
+               ),
+             ), 
+            SizedBox(height: 16),
+            mobile ? Column(spacing: 30, crossAxisAlignment: CrossAxisAlignment.stretch, children: cards,) : Wrap(spacing: 30, runSpacing: 30, children: cards)
+           ],
+        ),
+      ),
     );
   }
  
@@ -84,36 +102,43 @@ class ProjectEntry extends StatelessWidget{
             ),
           ),
           Text(description),
-          Row(
+          Wrap( 
+            spacing: 10,
+            runSpacing: 5,
             children: [
               for(final skill in skills)
-                OutlinedButton(    
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                  foregroundColor: accent,
-                  side: BorderSide(color: accent, width: 2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                IgnorePointer(
+                  ignoring: true,
+                  child: OutlinedButton(    
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      backgroundColor: Color.from(alpha: 0.05, red: 37, green: 37, blue: 37),
+                      foregroundColor: accent,
+                      side: BorderSide(color: accent, width: 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(skill)
                   ),
-                ),
-                child: Text(skill)
                 ),
               
             ],
           ),
-          OutlinedButton(    
-            onPressed: () => launchUrl(Uri.parse(github)),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-              foregroundColor: accent,
-              side: BorderSide(color: accent, width: 2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+          if(github.isNotEmpty)
+            OutlinedButton(    
+              onPressed: () => launchUrl(Uri.parse(github)),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                foregroundColor: accent,
+                side: BorderSide(color: accent, width: 2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
+              child: Text('Github')
             ),
-            child: Text('Github')
-          ),
         ],
       ),
     );
