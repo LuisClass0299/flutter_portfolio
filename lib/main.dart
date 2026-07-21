@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             actions: mobile ? null : [
               IconButton(
                 onPressed: () => launchUrl(Uri.parse('https://github.com/LuisClass0299')), 
+                tooltip: 'GitHub',
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
@@ -105,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(width:14),
               IconButton(
                 onPressed: () => launchUrl(Uri.parse('https://www.linkedin.com/in/luis-classe/')), 
+                tooltip: 'LinkedIn',
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
@@ -120,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(width: 14),
               IconButton(
                 onPressed: () => launchUrl(Uri.base.resolve('resume.pdf')), 
+                tooltip: 'Resume',
                 style: IconButton.styleFrom(
                   foregroundColor: accent,
                   side: const BorderSide(color: accent, width: 2),
